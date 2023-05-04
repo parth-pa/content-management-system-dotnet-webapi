@@ -75,5 +75,28 @@ namespace keyclock_Authentication.Services
 
 
         }
+
+        public async Task<string> getAdminToken1()
+        {
+
+            var bodyContent = new FormUrlEncodedContent(new[]
+        {
+            new KeyValuePair<string, string>("grant_type", "password"),
+            new KeyValuePair<string, string>("client_id", "admin-cli"),
+            new KeyValuePair<string, string>("username", "admin"),
+            new KeyValuePair<string, string>("password", "admin@123")
+        });
+
+            var requestForToken = new HttpRequestMessage(HttpMethod.Post, "http://localhost:8080/realms/master/protocol/openid-connect/token");
+            requestForToken.Content = bodyContent;
+
+            var responseToken = await _httpClient.SendAsync(requestForToken);
+            var responseJson = await responseToken.Content.ReadAsStringAsync();
+            LoginResponse decodedJson = JsonConvert.DeserializeObject<LoginResponse>(responseJson);
+
+            return decodedJson?.access_token;
+
+
+        }
     }
 }
