@@ -100,9 +100,6 @@ namespace keyclock_Authentication.Services
         }
 
 
-        public string getd()
-        {
-            return "hola";
-        }
+     
     }
 }
