@@ -75,7 +75,7 @@ namespace keyclock_Authentication.Controllers
 
             _httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage registerRequet = _httpClient.PostAsJsonAsync("http://localhost:8080/admin/realms/CMS1/users", register).Result;
+            HttpResponseMessage registerRequet = _httpClient.PostAsJsonAsync("http://10.195.81.19:8080/admin/realms/CMS1/users", register).Result;
            
          /*   if (registerRequet.StatusCode == HttpStatusCode.Unauthorized)
             {
