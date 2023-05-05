@@ -80,7 +80,7 @@ namespace keyclock_Authentication.Services
         {
 
             var bodyContent = new FormUrlEncodedContent(new[]
-        {
+        {   
             new KeyValuePair<string, string>("grant_type", "password"),
             new KeyValuePair<string, string>("client_id", "admin-cli"),
             new KeyValuePair<string, string>("username", "admin"),
