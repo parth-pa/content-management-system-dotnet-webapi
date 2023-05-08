@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "keyclock_Authentication", "keyclock_Authentication\keyclock_Authentication.csproj", "{DA5185DC-91DE-4BC0-822C-E8833E8AA3A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA5185DC-91DE-4BC0-822C-E8833E8AA3A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA5185DC-91DE-4BC0-822C-E8833E8AA3A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA5185DC-91DE-4BC0-822C-E8833E8AA3A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA5185DC-91DE-4BC0-822C-E8833E8AA3A4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FC41F9C3-569B-4779-832F-C2E6F607A073}
+	EndGlobalSection
+EndGlobal
