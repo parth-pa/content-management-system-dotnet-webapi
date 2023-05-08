@@ -5368,11 +5368,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\parth.patel\\Documents\\PARTH_NEW\\Key_Clock\\keyclock_Authentication\\keyclock_Authentication\\keyclock_Authentication.csproj",
+      "projectUniqueName": "C:\\Users\\parth.patel\\Documents\\PARTH_NEW\\GIt_Project\\content-management-system-dotnet-webapi\\keyclock_Authentication.csproj",
       "projectName": "keyclock_Authentication",
-      "projectPath": "c:\\Users\\parth.patel\\Documents\\PARTH_NEW\\Key_Clock\\keyclock_Authentication\\keyclock_Authentication\\keyclock_Authentication.csproj",
+      "projectPath": "C:\\Users\\parth.patel\\Documents\\PARTH_NEW\\GIt_Project\\content-management-system-dotnet-webapi\\keyclock_Authentication.csproj",
       "packagesPath": "C:\\Users\\parth.patel\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\parth.patel\\Documents\\PARTH_NEW\\Key_Clock\\keyclock_Authentication\\keyclock_Authentication\\obj\\",
+      "outputPath": "C:\\Users\\parth.patel\\Documents\\PARTH_NEW\\GIt_Project\\content-management-system-dotnet-webapi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
