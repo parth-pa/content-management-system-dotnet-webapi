@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jcQ1x7sKC1nFlKgoT6z6e9n8g1Ret6ZBGzPQyHDSwL7QbtX2ZPPTHbAmFgl96D7tMm4TgwrmyA5bcNqvHoPNdA==",
+  "dgSpecHash": "JW+t/ldnRiElp/FB5/NErh7EOgK/ATnmw8WMTT4yDKsOhXvidUasNz9bZATez1KrHZpaY8Kzhs8ztpVgQvU33g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\parth.patel\\Documents\\PARTH_NEW\\Key_Clock\\keyclock_Authentication\\keyclock_Authentication\\keyclock_Authentication.csproj",
+  "projectFilePath": "C:\\Users\\parth.patel\\Documents\\PARTH_NEW\\GIt_Project\\content-management-system-dotnet-webapi\\keyclock_Authentication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\parth.patel\\.nuget\\packages\\flurl.http.signed\\2.4.2\\flurl.http.signed.2.4.2.nupkg.sha512",
     "C:\\Users\\parth.patel\\.nuget\\packages\\flurl.signed\\2.8.2\\flurl.signed.2.8.2.nupkg.sha512",
