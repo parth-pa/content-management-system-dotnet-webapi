@@ -41,7 +41,7 @@ namespace keyclock_Authentication.Controllers
             }
 
             var jsons = await response.Content.ReadAsStringAsync();
-
+            
             LoginResponse myDeserializedClass = JsonConvert.DeserializeObject<LoginResponse>(jsons);
 
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();

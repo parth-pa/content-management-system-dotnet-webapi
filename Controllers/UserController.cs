@@ -135,6 +135,7 @@ namespace keyclock_Authentication.Controllers
                 list.id = reader.GetInt32("a_id");
                 list.title = reader.GetString("title");
                 list.description = reader.GetString("description");
+                list.image =reader.GetString("image");
 
                 /*list.image = reader.GetStream("image");
                 list.subId = reader.GetInt16("subId");*/
