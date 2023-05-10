@@ -156,7 +156,6 @@ namespace keyclock_Authentication.Controllers
 
         [HttpGet]
         [Route("getsubs")]
-        [Authorize]
 
         public ActionResult Get_sub_data(int id)
         {
