@@ -1,4 +1,5 @@
 ﻿using keyclock_Authentication.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Npgsql;
@@ -23,6 +24,8 @@ namespace keyclock_Authentication.Controllers
 
         [HttpGet]
         [Route("getid")]
+        [Authorize]
+
         public ActionResult Get(int id)
         {
             string sqlDataSource = _Configuration.GetConnectionString("conn");
@@ -49,6 +52,8 @@ namespace keyclock_Authentication.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
+
         public ActionResult Delete(int id, int id1)
         {
             string data = _Configuration.GetConnectionString("conn");
@@ -71,6 +76,7 @@ namespace keyclock_Authentication.Controllers
 
         [HttpGet]
         [Route("preference")]
+
         public ActionResult get()
         {
             string sqlDataSource = _Configuration.GetConnectionString("conn");
@@ -95,6 +101,8 @@ namespace keyclock_Authentication.Controllers
 
         [HttpGet]
         [Route("subpref")]
+        [Authorize]
+
         public ActionResult get_s()
         {
             string sqlDataSource = _Configuration.GetConnectionString("conn");
@@ -118,6 +126,8 @@ namespace keyclock_Authentication.Controllers
 
         [HttpGet]
         [Route("getinsindedatadetalils")]
+        [Authorize]
+
 
         public ActionResult Getdetails(int id, int id1)
         {
@@ -136,7 +146,7 @@ namespace keyclock_Authentication.Controllers
                 list.title = reader.GetString("title");
                 list.description = reader.GetString("description");
 
-                list.image = reader.GetStream("image");
+                list.image = reader.GetString("image");
                 // list.subId = reader.GetInt16("subId");
                 cms.Add(list);
             }
@@ -146,6 +156,7 @@ namespace keyclock_Authentication.Controllers
 
         [HttpGet]
         [Route("getsubs")]
+
         public ActionResult Get_sub_data(int id)
         {
             string sqlDataSource = _Configuration.GetConnectionString("conn");

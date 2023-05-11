@@ -34,8 +34,6 @@ namespace cmsapi.Controllers
 
         [HttpGet]
         [Route("getid")]
-        [HttpGet]
-        [Route("getid")]
         public ActionResult Get(int id)
         {
             string sqlDataSource = _Configuration.GetConnectionString("conn");
@@ -62,7 +60,7 @@ namespace cmsapi.Controllers
 
             return Ok(cms);
         }
-
+        
         [HttpDelete]
         [Authorize(Roles = Roles.ADMIN)]
         public ActionResult Delete(int id, int id1)
