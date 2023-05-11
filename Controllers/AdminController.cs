@@ -34,29 +34,8 @@ namespace cmsapi.Controllers
 
         [HttpGet]
         [Route("getid")]
-        //public ActionResult Get(int id)
-        //{
-        //    string sqlDataSource = _Configuration.GetConnectionString("conn");
-        //    NpgsqlConnection conn = new NpgsqlConnection(sqlDataSource);
-        //    conn.Open();
-        //    NpgsqlCommand command = new NpgsqlCommand();
-        //    command.Connection = conn;
-        //    command.CommandType = CommandType.Text;
-        //    command.CommandText = $"select * from cms_getdata({id})";
-        //    NpgsqlDataReader reader = command.ExecuteReader();
-        //    while (reader.Read())
-        //    {
-
-        //        var list = new cmsclass();
-        //        list.id = reader.GetInt32("id");
-        //        list.title = reader.GetString("title");
-        //        list.description = reader.GetString("description");
-        //        list.prefId = reader.GetInt32("prefid");
-        //        list.subPreferenceId = reader.GetInt32("subpreference");
-        //        list.image = reader.GetString("image");
-        //        cms.Add(list);
-        //    }
-
+        [HttpGet]
+        [Route("getid")]
         public ActionResult Get(int id)
         {
             string sqlDataSource = _Configuration.GetConnectionString("conn");
@@ -69,13 +48,14 @@ namespace cmsapi.Controllers
             NpgsqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
+
                 var list = new cmsclass();
-                list.id = reader.GetInt32("a_id");
+                list.id = reader.GetInt32("id");
                 list.title = reader.GetString("title");
                 list.description = reader.GetString("description");
-               // list.prefname = reader.GetString("preferencename");
-                /*list.image = reader.GetStream("image");*/
-                /*list.subId = reader.GetInt16("subId");*/
+                list.prefId = reader.GetInt32("prefid");
+                list.subPreferenceId = reader.GetInt32("subpreference");
+                list.image = reader.GetString("image");
                 cms.Add(list);
             }
 
