@@ -22,34 +22,34 @@ namespace keyclock_Authentication.Controllers
         List<TblpreferanceClass> pref = new List<TblpreferanceClass>();
         List<TblSubPreferance> aa = new List<TblSubPreferance>();
 
-        [HttpGet]
-        [Route("getid")]
-        [Authorize]
+        // [HttpGet]
+        // [Route("getid")]
+        // [Authorize]
 
-        public ActionResult Get(int id)
-        {
-            string sqlDataSource = _Configuration.GetConnectionString("conn");
-            NpgsqlConnection conn = new NpgsqlConnection(sqlDataSource);
-            conn.Open();
-            NpgsqlCommand command = new NpgsqlCommand();
-            command.Connection = conn;
-            command.CommandType = CommandType.Text;
-            command.CommandText = $"select * from cms_getdata({id})";
-            NpgsqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                var list = new cmsclass();
-                list.id = reader.GetInt32("a_id");
-                list.title = reader.GetString("title");
-                list.description = reader.GetString("description");
-                list.prefname = reader.GetString("preferencename");
-                /*list.image = reader.GetStream("image");*/
-                /*list.subId = reader.GetInt16("subId");*/
-                cms.Add(list);
-            }
+        // public ActionResult Get(int id)
+        // {
+        //     string sqlDataSource = _Configuration.GetConnectionString("conn");
+        //     NpgsqlConnection conn = new NpgsqlConnection(sqlDataSource);
+        //     conn.Open();
+        //     NpgsqlCommand command = new NpgsqlCommand();
+        //     command.Connection = conn;
+        //     command.CommandType = CommandType.Text;
+        //     command.CommandText = $"select * from cms_getdata({id})";
+        //     NpgsqlDataReader reader = command.ExecuteReader();
+        //     while (reader.Read())
+        //     {
+        //         var list = new cmsclass();
+        //         list.id = reader.GetInt32("a_id");
+        //         list.title = reader.GetString("title");
+        //         list.description = reader.GetString("description");
+        //         list.prefname = reader.GetString("preferencename");
+        //         /*list.image = reader.GetStream("image");*/
+        //         /*list.subId = reader.GetInt16("subId");*/
+        //         cms.Add(list);
+        //     }
 
-            return Ok(cms);
-        }
+        //     return Ok(cms);
+        // }
 
         [HttpDelete]
         [Authorize]
