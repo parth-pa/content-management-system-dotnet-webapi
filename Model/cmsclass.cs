@@ -8,7 +8,7 @@
 
         public string? description { get; set; } 
 
-        public  string image { get; set; }
+        public  string? image { get; set; }
 
         public int prefId { get; set; }
 
