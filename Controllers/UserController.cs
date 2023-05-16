@@ -31,7 +31,7 @@ namespace keyclock_Authentication.Controllers
             NpgsqlCommand command = new NpgsqlCommand();
             command.Connection = conn;
             command.CommandType = CommandType.Text;
-            command.CommandText = $"select * from cms_getdata({id})";
+            command.CommandText = $"select * from cms_getdata_user({id})";
             NpgsqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -40,11 +40,11 @@ namespace keyclock_Authentication.Controllers
                 list.title = reader.GetString("title");
                 list.description = reader.GetString("description");
                 list.prefname = reader.GetString("preferencename");
-                /*list.image = reader.GetStream("image");*/
+                list.image = reader.GetString("image");
                 /*list.subId = reader.GetInt16("subId");*/
                 cms.Add(list);
             }
-
+            conn.Close();
             return Ok(cms);
         }
 
@@ -62,10 +62,12 @@ namespace keyclock_Authentication.Controllers
             if (a == 0)
             {
                 return BadRequest(new { fail = " failed" });
+                conn.Close();
             }
             else
             {
                 return Ok(new { success = "done" });
+                conn.Close();
             }
         }
 
@@ -89,6 +91,7 @@ namespace keyclock_Authentication.Controllers
                 /*list.image = reader.GetStream("image");*/
                 pref.Add(list);
             }
+            conn.Close();
             return Ok(pref);
         }
 
@@ -113,6 +116,7 @@ namespace keyclock_Authentication.Controllers
                 list.sub_id = reader.GetInt16("preferenceid");
                 pref.Add(list);
             }
+            conn.Close();
             return Ok(pref);
         }
 
@@ -135,6 +139,7 @@ namespace keyclock_Authentication.Controllers
                 list.id = reader.GetInt32("a_id");
                 list.title = reader.GetString("title");
                 list.description = reader.GetString("description");
+                list.image =reader.GetString("image");
 
                 /*list.image = reader.GetStream("image");
                 list.subId = reader.GetInt16("subId");*/
@@ -165,7 +170,7 @@ namespace keyclock_Authentication.Controllers
 
                 aa.Add(list);
             }
-
+            conn.Close();
             return Ok(aa);
         }
     }
