@@ -41,6 +41,7 @@ namespace keyclock_Authentication.Controllers
                 list.description = reader.GetString("description");
                 list.prefname = reader.GetString("preferencename");
                 list.image = reader.GetString("image");
+                list.subPreferenceId =reader.GetInt32("subpreference_id");
                 /*list.subId = reader.GetInt16("subId");*/
                 cms.Add(list);
             }
