@@ -1,6 +1,8 @@
 ﻿
 
 using cmsApi;
+using keyclock_Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -12,14 +14,14 @@ namespace cmsapi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CmsController : ControllerBase
+    public class AdminController : ControllerBase
     {
         public readonly IConfiguration _Configuration;
 
         private readonly IWebHostEnvironment _environment;
 
       
-        public CmsController(IConfiguration configuration , IWebHostEnvironment environment)
+        public AdminController(IConfiguration configuration , IWebHostEnvironment environment)
         {
             _Configuration = configuration;
             this._environment = environment;
@@ -58,8 +60,9 @@ namespace cmsapi.Controllers
 
             return Ok(cms);
         }
-
+        
         [HttpDelete]
+        [Authorize(Roles = Roles.ADMIN)]
         public ActionResult Delete(int id, int id1)
         {
             string data = _Configuration.GetConnectionString("conn");
@@ -82,6 +85,7 @@ namespace cmsapi.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = Roles.ADMIN)]
 
         public ActionResult post(cmsclass data)
         {
@@ -97,13 +101,14 @@ namespace cmsapi.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = Roles.ADMIN)]
 
         public ActionResult put(cmsclass data)
         {
             string sqlConnection = _Configuration.GetConnectionString("conn");
             NpgsqlConnection con = new NpgsqlConnection(sqlConnection);
             con.Open();
-            NpgsqlCommand cmd = new NpgsqlCommand($"select update_data ({data.id},'{data.title}','{data.description}','{data.image}',{data.prefId},{data.subPreferenceId})", con);
+            NpgsqlCommand cmd = new NpgsqlCommand($"select update_data({data.id},'{data.title}','{data.description}','{data.image}',{data.prefId},{data.subPreferenceId})", con);
             cmd.ExecuteNonQuery();
             con.Close();
 
