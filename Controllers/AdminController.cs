@@ -62,7 +62,7 @@ namespace cmsapi.Controllers
         }
         
         [HttpDelete]
-        [Authorize(Roles = Roles.ADMIN)]
+       [Authorize(Roles = Roles.ADMIN)]
         public ActionResult Delete(int id, int id1)
         {
             string data = _Configuration.GetConnectionString("conn");
@@ -101,7 +101,7 @@ namespace cmsapi.Controllers
         }
 
         [HttpPut]
-        [Authorize(Roles = Roles.ADMIN)]
+       [Authorize(Roles = Roles.ADMIN)]
 
         public ActionResult put(cmsclass data)
         {
