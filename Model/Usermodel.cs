@@ -28,7 +28,7 @@
 
         public string image { get; set; } //Iformfile
 
-        public int subId { get; set; }
+        public int prefId { get; set; }
 
         public int subPreferenceId { get; set; }
 

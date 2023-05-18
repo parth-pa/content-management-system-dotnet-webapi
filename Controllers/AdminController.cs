@@ -221,6 +221,9 @@ namespace cmsapi.Controllers
                 var list = new cmsclass();
                 list.id = reader.GetInt32("a_id");
                 list.title = reader.GetString("title");
+                list.image =reader.GetString("image");
+                list.prefId= reader.GetInt32("preference");
+                list.subPreferenceId = reader.GetInt32("subpreference");
                 // list.pref_id = reader.GetInt16("p_id");
 
                 cms.Add(list);
