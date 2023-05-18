@@ -204,7 +204,57 @@ namespace cmsapi.Controllers
               return Ok(pref);
           }*/
 
+        [HttpGet ("deleted_data")]
+        [Authorize(Roles = Roles.ADMIN)]
+        public ActionResult Get_deleted_data(int id)
+        {
+            string sqlDataSource = _Configuration.GetConnectionString("conn");
+            NpgsqlConnection conn = new NpgsqlConnection(sqlDataSource);
+            conn.Open();
+            NpgsqlCommand command = new NpgsqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+            command.CommandText = $"select * from cms_get_deletedata({id})";
+            NpgsqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                var list = new cmsclass();
+                list.id = reader.GetInt32("a_id");
+                list.title = reader.GetString("title");
+                // list.pref_id = reader.GetInt16("p_id");
 
+                cms.Add(list);
+            }
+            conn.Close();
+            return Ok(cms);
+        }
+
+
+        [HttpPut]
+        [Route("restoredata")]
+       [Authorize(Roles = Roles.ADMIN)]
+
+        public ActionResult restore(int id, int id1)
+        {
+            string data = _Configuration.GetConnectionString("conn");
+            NpgsqlConnection conn = new NpgsqlConnection(data);
+            conn.Open();
+            NpgsqlCommand command = new NpgsqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+            command.CommandText = $"select * from cms_deletedata_true({id},{id1});";
+            int a = command.ExecuteNonQuery();
+            if (a == 0)
+            {
+                return BadRequest(new { fail = " failed" });
+                conn.Close();
+            }
+            else
+            {
+                return Ok(new { success = "done" });
+                conn.Close();
+            }
+        }
     }
 }
 
