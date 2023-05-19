@@ -34,5 +34,6 @@
 
         public string prefname { get; set; }
 
+        public bool approved{ get; set; }
     }
 }
