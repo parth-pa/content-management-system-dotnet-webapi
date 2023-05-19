@@ -282,7 +282,7 @@ namespace cmsapi.Controllers
                 list.image =reader.GetString("image");
                 list.description=reader.GetString("description");
                 list.subPreferenceId= reader.GetInt32("subid");
-                
+                list.prefId= reader.GetInt32("preferenceid");
                 list.approved = reader.GetBoolean("approved");
                 // list.pref_id = reader.GetInt16("p_id");
 
