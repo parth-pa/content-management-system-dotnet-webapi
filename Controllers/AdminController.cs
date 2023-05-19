@@ -291,6 +291,34 @@ namespace cmsapi.Controllers
             conn.Close();
             return Ok(cms);
         }
+
+
+        [HttpPut]
+        [Route("approvedata")]
+       [Authorize(Roles = Roles.ADMIN)]
+
+        public ActionResult approve(int id, int id1)
+        {
+            string data = _Configuration.GetConnectionString("conn");
+            NpgsqlConnection conn = new NpgsqlConnection(data);
+            conn.Open();
+            NpgsqlCommand command = new NpgsqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+            command.CommandText = $"select * from cms_approveddata_true({id},{id1});";
+            int a = command.ExecuteNonQuery();
+            if (a == 0)
+            {
+                return BadRequest(new { fail = " failed" });
+                conn.Close();
+            }
+            else
+            {
+                return Ok(new { success = "done" });
+                conn.Close();
+            }
+        }
+
     }
 }
 
