@@ -152,8 +152,8 @@ namespace keyclock_Authentication.Controllers
                 list.description = reader.GetString("description");
                 list.image =reader.GetString("image");
 
-                list.image = reader.GetString("image");
-                // list.subId = reader.GetInt16("subId");
+                list.subPreferenceId = reader.GetInt32("subId");
+                list.approved = reader.GetBoolean("approved");
                 cms.Add(list);
             }
             conn.Close();
