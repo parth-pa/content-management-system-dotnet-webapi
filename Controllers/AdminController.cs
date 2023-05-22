@@ -295,7 +295,7 @@ namespace cmsapi.Controllers
 
         [HttpPut]
         [Route("approvedata")]
-       [Authorize(Roles = Roles.ADMIN)]
+        [Authorize(Roles = Roles.ADMIN)]
 
         public ActionResult approve(int id, int id1)
         {
