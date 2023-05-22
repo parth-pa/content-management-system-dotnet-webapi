@@ -28,12 +28,11 @@
 
         public string image { get; set; } //Iformfile
 
-        public int prefId { get; set; }
+        public int subId { get; set; }
 
         public int subPreferenceId { get; set; }
 
         public string prefname { get; set; }
 
-        public bool approved{ get; set; }
     }
 }
