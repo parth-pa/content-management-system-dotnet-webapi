@@ -186,6 +186,30 @@ namespace keyclock_Authentication.Controllers
             return Ok(aa);
         }
 
+        [HttpPost]
+        [Route("feed")]
+        public ActionResult feed(feedbacks data)
+        {
+            string sqlDataSource = _Configuration.GetConnectionString("conn");
+            NpgsqlConnection conn = new NpgsqlConnection(sqlDataSource);
+            conn.Open();
+            NpgsqlCommand command = new NpgsqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+            command.CommandText = $"insert into tblFeedbackMaster(name,email,phoneno,feedback) values('{data.name}','{data.email}','{data.phoneno}','{data.feedback}')";
+            int a = command.ExecuteNonQuery();
+            if (a == 0)
+            {
+                return BadRequest(new { fail = " failed" });
+                conn.Close();
+            }
+            else
+            {
+                return Ok(new { success = "done" });
+                conn.Close();
+            }
+
+        }
 
   
     }
