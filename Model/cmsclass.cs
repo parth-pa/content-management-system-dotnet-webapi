@@ -13,8 +13,10 @@
         public int prefId { get; set; }
 
         public int subPreferenceId { get; set; }
+
+        public bool status {get; set;}
     
-         public bool approved{ get; set; }
+         public bool? approved{ get; set; }
     }
 }
 

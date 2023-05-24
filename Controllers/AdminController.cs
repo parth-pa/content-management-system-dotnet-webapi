@@ -215,18 +215,21 @@ namespace cmsapi.Controllers
             NpgsqlCommand command = new NpgsqlCommand();
             command.Connection = conn;
             command.CommandType = CommandType.Text;
-            command.CommandText = $"select * from cms_get_deletedata({id})";
+            // command.CommandText = $"select * from cms_get_deletedata({id})";
+            command.CommandText = $"select *from history_log({id})";
+            
             NpgsqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
                 var list = new cmsclass();
                 list.id = reader.GetInt32("a_id");
                 list.title = reader.GetString("title");
-                list.description=reader.GetString("description");
-                list.image =reader.GetString("image");
-                list.description=reader.GetString("description");
+                // list.description=reader.GetString("description");
+                list.image =reader.GetString("a_image");
+                list.description=reader.GetString("a_description");
                 list.prefId= reader.GetInt32("preference");
                 list.subPreferenceId = reader.GetInt32("subpreference");
+                list.status = reader.GetBoolean("status");
                 // list.pref_id = reader.GetInt16("p_id");
 
                 cms.Add(list);
@@ -283,7 +286,7 @@ namespace cmsapi.Controllers
                 list.image =reader.GetString("image");
                 list.description=reader.GetString("description");
                 list.subPreferenceId= reader.GetInt32("subid");
-                
+                list.prefId= reader.GetInt32("preferenceid");
                 list.approved = reader.GetBoolean("approved");
                 // list.pref_id = reader.GetInt16("p_id");
 
