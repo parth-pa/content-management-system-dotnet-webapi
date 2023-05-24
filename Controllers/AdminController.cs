@@ -1,7 +1,6 @@
-﻿
-
-using cmsApi;
+﻿using cmsApi;
 using keyclock_Authentication;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +30,7 @@ namespace cmsapi.Controllers
 
         List<cmsclass> cms = new List<cmsclass>();
 
+        List<feedbackdata> feedbackdataaa = new List<feedbackdata>();
 
         [HttpGet]
         [Route("getid")]
@@ -205,6 +205,7 @@ namespace cmsapi.Controllers
           }*/
 
         [HttpGet]
+        [Route("deleted_data")]
         [Authorize(Roles = Roles.ADMIN)]
         public ActionResult Get_deleted_data(int id)
         {
@@ -221,6 +222,10 @@ namespace cmsapi.Controllers
                 var list = new cmsclass();
                 list.id = reader.GetInt32("a_id");
                 list.title = reader.GetString("title");
+                list.description=reader.GetString("description");
+                list.image =reader.GetString("image");
+                list.prefId= reader.GetInt32("preference");
+                list.subPreferenceId = reader.GetInt32("subpreference");
                 // list.pref_id = reader.GetInt16("p_id");
 
                 cms.Add(list);
@@ -254,6 +259,90 @@ namespace cmsapi.Controllers
                 return Ok(new { success = "done" });
                 conn.Close();
             }
+        }
+
+        [HttpGet]
+        [Route("getnotapproveddata")]
+        [Authorize(Roles = Roles.ADMIN)]
+        public ActionResult Get_notapproved_data(int id)
+        {
+            string sqlDataSource = _Configuration.GetConnectionString("conn");
+            NpgsqlConnection conn = new NpgsqlConnection(sqlDataSource);
+            conn.Open();
+            NpgsqlCommand command = new NpgsqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+            command.CommandText = $"select * from cms_getnotapproved_data({id})";
+            NpgsqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                var list = new cmsclass();
+                list.id = reader.GetInt32("a_id");
+                list.title = reader.GetString("title");
+                list.image =reader.GetString("image");
+                list.description=reader.GetString("description");
+                list.subPreferenceId= reader.GetInt32("subid");
+                list.prefId= reader.GetInt32("preferenceid");
+                list.approved = reader.GetBoolean("approved");
+                // list.pref_id = reader.GetInt16("p_id");
+
+                cms.Add(list);
+            }
+            conn.Close();
+            return Ok(cms);
+        }
+
+
+        [HttpPut]
+        [Route("approvedata")]
+        [Authorize(Roles = Roles.ADMIN)]
+
+        public ActionResult approve(int id, int id1)
+        {
+            string data = _Configuration.GetConnectionString("conn");
+            NpgsqlConnection conn = new NpgsqlConnection(data);
+            conn.Open();
+            NpgsqlCommand command = new NpgsqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+            command.CommandText = $"select * from cms_approveddata_true({id},{id1});";
+            int a = command.ExecuteNonQuery();
+            if (a == 0)
+            {
+                return BadRequest(new { fail = " failed" });
+                conn.Close();
+            }
+            else
+            {
+                return Ok(new { success = "done" });
+                conn.Close();
+            }
+        }
+        
+        [HttpGet]
+        [Route("getfeedback")]
+        [Authorize(Roles = Roles.ADMIN)]
+        public ActionResult Get_feedback()
+        {
+            string sqlDataSource = _Configuration.GetConnectionString("conn");
+            NpgsqlConnection conn = new NpgsqlConnection(sqlDataSource);
+            conn.Open();
+            NpgsqlCommand command = new NpgsqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+            command.CommandText = $"select * from tblFeedbackMaster";
+            NpgsqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                var list = new feedbackdata();
+                list.name = reader.GetString("name");
+                list.email =reader.GetString("email");
+                list.phoneno=reader.GetString("phoneno");
+                list.feedback = reader.GetString("feedback");
+                feedbackdataaa.Add(list);
+            }
+            conn.Close();
+            return Ok(feedbackdataaa);
         }
     }
 }
