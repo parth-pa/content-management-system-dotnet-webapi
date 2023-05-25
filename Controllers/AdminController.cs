@@ -330,15 +330,15 @@ namespace cmsapi.Controllers
             NpgsqlCommand command = new NpgsqlCommand();
             command.Connection = conn;
             command.CommandType = CommandType.Text;
-            command.CommandText = $"select * from tblFeedbackMaster";
+            command.CommandText = $"select * from cms_getfeed()";
             NpgsqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
                 var list = new feedbackdata();
-                list.name = reader.GetString("name");
-                list.email =reader.GetString("email");
-                list.phoneno=reader.GetString("phoneno");
-                list.feedback = reader.GetString("feedback");
+                list.name = reader.GetString("u_name");
+                list.email =reader.GetString("u_email");
+                list.phoneno=reader.GetString("u_phoneno");
+                list.feedback = reader.GetString("u_feedback");
                 feedbackdataaa.Add(list);
             }
             conn.Close();
