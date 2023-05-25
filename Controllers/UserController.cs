@@ -24,7 +24,7 @@ namespace keyclock_Authentication.Controllers
 
         [HttpGet]
         [Route("getid")]
-        [Authorize]
+       [Authorize]
 
         public ActionResult Get(int id)
         {
@@ -53,7 +53,7 @@ namespace keyclock_Authentication.Controllers
         }
 
         [HttpDelete]
-        [Authorize]
+       [Authorize]
 
         public ActionResult Delete(int id, int id1)
         {
@@ -105,7 +105,7 @@ namespace keyclock_Authentication.Controllers
 
         [HttpGet]
         [Route("subpref")]
-        [Authorize]
+       [Authorize]
 
         public ActionResult get_s()
         {
@@ -131,7 +131,7 @@ namespace keyclock_Authentication.Controllers
 
         [HttpGet]
         [Route("getinsindedatadetalils")]
-        [Authorize]
+       [Authorize]
 
 
         public ActionResult Getdetails(int id, int id1)
