@@ -216,7 +216,7 @@ namespace cmsapi.Controllers
             command.Connection = conn;
             command.CommandType = CommandType.Text;
             // command.CommandText = $"select * from cms_get_deletedata({id})";
-           command.CommandText = $"select *from history_log({id})";
+            command.CommandText = $"select *from history_log({id})";
             NpgsqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
