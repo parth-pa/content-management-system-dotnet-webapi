@@ -198,7 +198,7 @@ namespace keyclock_Authentication.Controllers
             NpgsqlCommand command = new NpgsqlCommand();
             command.Connection = conn;
             command.CommandType = CommandType.Text;
-            command.CommandText = $"select insert_feed ('{dataa.name}','{dataa.email}','{dataa.phoneno}','{dataa.feedback}')";
+            command.CommandText = $"select insert_feed ('{dataa.name}','{dataa.email}',{dataa.phoneno},'{dataa.feedback}')";
             int a = command.ExecuteNonQuery();
             if (a == 0)
             {

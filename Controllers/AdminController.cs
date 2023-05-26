@@ -217,21 +217,18 @@ namespace cmsapi.Controllers
             command.Connection = conn;
             command.CommandType = CommandType.Text;
             // command.CommandText = $"select * from cms_get_deletedata({id})";
-            command.CommandText = $"select *from history_log({id})";
-            
+           command.CommandText = $"select *from history_log({id})";
             NpgsqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
                 var list = new cmsclass();
                 list.id = reader.GetInt32("a_id");
                 list.title = reader.GetString("title");
-                // list.description=reader.GetString("description");
-                list.image =reader.GetString("a_image");
                 list.description=reader.GetString("a_description");
+                list.image =reader.GetString("a_image");
                 list.prefId= reader.GetInt32("preference");
                 list.subPreferenceId = reader.GetInt32("subpreference");
                 list.status = reader.GetBoolean("status");
-                // list.pref_id = reader.GetInt16("p_id");
 
                 cms.Add(list);
             }
@@ -342,7 +339,7 @@ namespace cmsapi.Controllers
                 var list = new feedbackdata();
                 list.name = reader.GetString("u_name");
                 list.email =reader.GetString("u_email");
-                list.phoneno=reader.GetString("u_phoneno");
+                list.phoneno=reader.GetInt64("u_phoneno");
                 list.feedback = reader.GetString("u_feedback");
                 feedbackdataaa.Add(list);
             }
