@@ -162,6 +162,7 @@ namespace keyclock_Authentication.Controllers
 
         [HttpGet]
         [Route("getsubs")]
+        [Authorize]
 
         public ActionResult Get_sub_data(int id)
         {
@@ -188,7 +189,8 @@ namespace keyclock_Authentication.Controllers
 
         [HttpPost]
         [Route("feed")]
-        public ActionResult feed(feedbacks data)
+        [Authorize]
+        public ActionResult feed(feedbacks dataa)
         {
             string sqlDataSource = _Configuration.GetConnectionString("conn");
             NpgsqlConnection conn = new NpgsqlConnection(sqlDataSource);
@@ -196,7 +198,7 @@ namespace keyclock_Authentication.Controllers
             NpgsqlCommand command = new NpgsqlCommand();
             command.Connection = conn;
             command.CommandType = CommandType.Text;
-            command.CommandText = $"insert into tblFeedbackMaster(name,email,phoneno,feedback) values('{data.name}','{data.email}','{data.phoneno}','{data.feedback}')";
+            command.CommandText = $"select insert_feed ('{dataa.name}','{dataa.email}',{dataa.phoneno},'{dataa.feedback}')";
             int a = command.ExecuteNonQuery();
             if (a == 0)
             {

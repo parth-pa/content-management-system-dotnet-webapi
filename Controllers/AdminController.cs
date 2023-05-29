@@ -1,5 +1,7 @@
 ﻿
 
+
+
 using cmsApi;
 using keyclock_Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -31,37 +33,12 @@ namespace cmsapi.Controllers
 
         List<cmsclass> cms = new List<cmsclass>();
 
-
-        // [HttpGet]
-        // [Route("getid")]
-        // public ActionResult Get(int id)
-        // {
-        //     string sqlDataSource = _Configuration.GetConnectionString("conn");
-        //     NpgsqlConnection conn = new NpgsqlConnection(sqlDataSource);
-        //     conn.Open();
-        //     NpgsqlCommand command = new NpgsqlCommand();
-        //     command.Connection = conn;
-        //     command.CommandType = CommandType.Text;
-        //     command.CommandText = $"select * from cms_getdata({id})";
-        //     NpgsqlDataReader reader = command.ExecuteReader();
-        //     while (reader.Read())
-        //     {
-
-        //         var list = new cmsclass();
-        //         list.id = reader.GetInt32("id");
-        //         list.title = reader.GetString("title");
-        //         list.description = reader.GetString("description");
-        //         list.prefId = reader.GetInt32("prefid");
-        //         list.subPreferenceId = reader.GetInt32("subpreference");
-        //         list.image = reader.GetString("image");
-        //         cms.Add(list);
-        //     }
+        List<feedbackdata> feedbackdataaa = new List<feedbackdata>();
 
 
-        //     return Ok(cms);
-        // }
         
         [HttpDelete]
+       [Authorize(Roles = Roles.ADMIN)]
        [Authorize(Roles = Roles.ADMIN)]
         public ActionResult Delete(int id, int id1)
         {
@@ -92,7 +69,7 @@ namespace cmsapi.Controllers
             string sqlConnection = _Configuration.GetConnectionString("conn");
             NpgsqlConnection con = new NpgsqlConnection(sqlConnection);
             con.Open();
-            NpgsqlCommand cmd = new NpgsqlCommand($"Select insert_data('{data.title}','{data.description}','{data.image}',{data.prefId},{data.subPreferenceId})", con);
+            NpgsqlCommand cmd = new NpgsqlCommand($"Select insert_data('{data.title}',$${data.description}$$,'{data.image}',{data.prefId},{data.subPreferenceId})", con);
             cmd.ExecuteNonQuery();
             //con.Close();
 
@@ -101,6 +78,7 @@ namespace cmsapi.Controllers
         }
 
         [HttpPut]
+       [Authorize(Roles = Roles.ADMIN)]
        [Authorize(Roles = Roles.ADMIN)]
 
         public ActionResult put(cmsclass data)
@@ -225,8 +203,11 @@ namespace cmsapi.Controllers
                 list.title = reader.GetString("title");
                 list.description=reader.GetString("a_description");
                 list.image =reader.GetString("a_image");
+                list.description=reader.GetString("a_description");
+                list.image =reader.GetString("a_image");
                 list.prefId= reader.GetInt32("preference");
                 list.subPreferenceId = reader.GetInt32("subpreference");
+                list.status = reader.GetBoolean("status");
                 list.status = reader.GetBoolean("status");
 
                 cms.Add(list);
@@ -297,6 +278,7 @@ namespace cmsapi.Controllers
         [HttpPut]
         [Route("approvedata")]
        [Authorize(Roles = Roles.ADMIN)]
+       [Authorize(Roles = Roles.ADMIN)]
 
         public ActionResult approve(int id, int id1)
         {
@@ -319,7 +301,32 @@ namespace cmsapi.Controllers
                 conn.Close();
             }
         }
-
+        
+        [HttpGet]
+        [Route("getfeedback")]
+        [Authorize(Roles = Roles.ADMIN)]
+        public ActionResult Get_feedback()
+        {
+            string sqlDataSource = _Configuration.GetConnectionString("conn");
+            NpgsqlConnection conn = new NpgsqlConnection(sqlDataSource);
+            conn.Open();
+            NpgsqlCommand command = new NpgsqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+            command.CommandText = $"select * from cms_getfeed()";
+            NpgsqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                var list = new feedbackdata();
+                list.name = reader.GetString("u_name");
+                list.email =reader.GetString("u_email");
+                list.phoneno=reader.GetInt64("u_phoneno");
+                list.feedback = reader.GetString("u_feedback");
+                feedbackdataaa.Add(list);
+            }
+            conn.Close();
+            return Ok(feedbackdataaa);
+        }
     }
 }
 
