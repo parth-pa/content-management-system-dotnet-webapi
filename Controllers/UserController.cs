@@ -211,6 +211,34 @@ namespace keyclock_Authentication.Controllers
 
         }
 
-  
+        [HttpGet]
+        [Route("getinsindedatadetalilsuser")]
+        [Authorize]
+
+
+        public ActionResult Getdetailsforuser(int id, int id1)
+        {
+            string sqlDataSource = _Configuration.GetConnectionString("conn");
+            NpgsqlConnection conn = new NpgsqlConnection(sqlDataSource);
+            conn.Open();
+            NpgsqlCommand command = new NpgsqlCommand();
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+            command.CommandText = $"select * from cms_get_detaildata_user({id},{id1})";
+            NpgsqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                var list = new cmsclass();
+                list.id = reader.GetInt32("a_id");
+                list.title = reader.GetString("title");
+                list.description = reader.GetString("description");
+                list.image =reader.GetString("image");
+                list.subPreferenceId = reader.GetInt32("subId");
+                list.approved = reader.GetBoolean("approved");
+                cms.Add(list);
+            }
+            conn.Close();
+            return Ok(cms);
+        }
     }
 }
