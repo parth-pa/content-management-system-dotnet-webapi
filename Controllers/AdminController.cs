@@ -79,14 +79,13 @@ namespace cmsapi.Controllers
 
         [HttpPut]
        [Authorize(Roles = Roles.ADMIN)]
-       [Authorize(Roles = Roles.ADMIN)]
-
+      
         public ActionResult put(cmsclass data)
         {
             string sqlConnection = _Configuration.GetConnectionString("conn");
             NpgsqlConnection con = new NpgsqlConnection(sqlConnection);
             con.Open();
-            NpgsqlCommand cmd = new NpgsqlCommand($"select update_data({data.id},'{data.title}','{data.description}','{data.image}',{data.prefId},{data.subPreferenceId})", con);
+            NpgsqlCommand cmd = new NpgsqlCommand($"select update_data({data.id},'{data.title}',$${data.description}$$,'{data.image}',{data.prefId},{data.subPreferenceId})", con);
             cmd.ExecuteNonQuery();
             con.Close();
 
