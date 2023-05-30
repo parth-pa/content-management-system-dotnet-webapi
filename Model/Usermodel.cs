@@ -42,7 +42,7 @@
 
         public string email { get; set; }
 
-        public long phoneno { get; set; }
+        public string phoneno { get; set; }
 
         public string feedback { get; set; }
     }

@@ -24,7 +24,7 @@ namespace keyclock_Authentication.Controllers
 
         [HttpGet]
         [Route("getid")]
-       [Authorize]
+        [Authorize]
 
         public ActionResult Get(int id)
         {
@@ -53,7 +53,7 @@ namespace keyclock_Authentication.Controllers
         }
 
         [HttpDelete]
-       [Authorize]
+        [Authorize]
 
         public ActionResult Delete(int id, int id1)
         {
@@ -105,7 +105,7 @@ namespace keyclock_Authentication.Controllers
 
         [HttpGet]
         [Route("subpref")]
-       [Authorize]
+        [Authorize]
 
         public ActionResult get_s()
         {
@@ -131,7 +131,7 @@ namespace keyclock_Authentication.Controllers
 
         [HttpGet]
         [Route("getinsindedatadetalils")]
-       [Authorize]
+        [Authorize]
 
 
         public ActionResult Getdetails(int id, int id1)
@@ -162,7 +162,6 @@ namespace keyclock_Authentication.Controllers
 
         [HttpGet]
         [Route("getsubs")]
-        [Authorize]
 
         public ActionResult Get_sub_data(int id)
         {
@@ -189,8 +188,7 @@ namespace keyclock_Authentication.Controllers
 
         [HttpPost]
         [Route("feed")]
-        [Authorize]
-        public ActionResult feed(feedbacks dataa)
+        public ActionResult feed(feedbacks data)
         {
             string sqlDataSource = _Configuration.GetConnectionString("conn");
             NpgsqlConnection conn = new NpgsqlConnection(sqlDataSource);
@@ -198,7 +196,7 @@ namespace keyclock_Authentication.Controllers
             NpgsqlCommand command = new NpgsqlCommand();
             command.Connection = conn;
             command.CommandType = CommandType.Text;
-            command.CommandText = $"select insert_feed ('{dataa.name}','{dataa.email}',{dataa.phoneno},'{dataa.feedback}')";
+            command.CommandText = $"insert into tblFeedbackMaster(name,email,phoneno,feedback) values('{data.name}','{data.email}','{data.phoneno}','{data.feedback}')";
             int a = command.ExecuteNonQuery();
             if (a == 0)
             {

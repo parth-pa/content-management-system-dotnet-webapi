@@ -24,8 +24,6 @@ var jwtOptions = configuration.GetSection("JwtBearer").Get<JwtBearerOptions>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-
-
 builder.Services.AddCors(c =>
 {
     c.AddPolicy("AllowOrigin", Options => Options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
@@ -43,7 +41,6 @@ builder.Services.AddSwaggerGen(options =>
 
     options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
-
 
 
 builder.Services
@@ -76,7 +73,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 
 app.UseHttpsRedirection();
 app.UseCors("AllowOrigin");

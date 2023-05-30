@@ -10,13 +10,11 @@
 
         public  string image { get; set; }
 
-        public int? prefId { get; set; }
+        public int prefId { get; set; }
 
-        public int? subPreferenceId { get; set; }
-
-        public bool? status {get;set;}
+        public int subPreferenceId { get; set; }
     
-     public bool? approved{ get; set; }
+     public bool approved{ get; set; }
     }
 
     public class feedbackdata
@@ -26,7 +24,7 @@
 
         public string email { get; set; }
 
-        public long phoneno { get; set; }
+        public string phoneno { get; set; }
 
         public string feedback { get; set; }
     }
