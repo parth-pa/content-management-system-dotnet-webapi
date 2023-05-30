@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 ﻿using cmsApi;
+=======
+﻿
+
+
+
+using cmsApi;
+>>>>>>> 90910c647a4c559b489c07a88e2fb13630df8373
 using keyclock_Authentication;
 
 using Microsoft.AspNetCore.Authorization;
@@ -32,6 +40,7 @@ namespace cmsapi.Controllers
 
         List<feedbackdata> feedbackdataaa = new List<feedbackdata>();
 
+<<<<<<< HEAD
         [HttpGet]
         [Route("getid")]
         public ActionResult Get(int id)
@@ -63,6 +72,13 @@ namespace cmsapi.Controllers
         
         [HttpDelete]
         [Authorize(Roles = Roles.ADMIN)]
+=======
+
+        
+        [HttpDelete]
+       [Authorize(Roles = Roles.ADMIN)]
+       [Authorize(Roles = Roles.ADMIN)]
+>>>>>>> 90910c647a4c559b489c07a88e2fb13630df8373
         public ActionResult Delete(int id, int id1)
         {
             string data = _Configuration.GetConnectionString("conn");
@@ -92,7 +108,7 @@ namespace cmsapi.Controllers
             string sqlConnection = _Configuration.GetConnectionString("conn");
             NpgsqlConnection con = new NpgsqlConnection(sqlConnection);
             con.Open();
-            NpgsqlCommand cmd = new NpgsqlCommand($"Select insert_data('{data.title}','{data.description}','{data.image}',{data.prefId},{data.subPreferenceId})", con);
+            NpgsqlCommand cmd = new NpgsqlCommand($"Select insert_data('{data.title}',$${data.description}$$,'{data.image}',{data.prefId},{data.subPreferenceId})", con);
             cmd.ExecuteNonQuery();
             //con.Close();
 
@@ -101,7 +117,12 @@ namespace cmsapi.Controllers
         }
 
         [HttpPut]
+<<<<<<< HEAD
         [Authorize(Roles = Roles.ADMIN)]
+=======
+       [Authorize(Roles = Roles.ADMIN)]
+       [Authorize(Roles = Roles.ADMIN)]
+>>>>>>> 90910c647a4c559b489c07a88e2fb13630df8373
 
         public ActionResult put(cmsclass data)
         {
@@ -215,18 +236,34 @@ namespace cmsapi.Controllers
             NpgsqlCommand command = new NpgsqlCommand();
             command.Connection = conn;
             command.CommandType = CommandType.Text;
+<<<<<<< HEAD
             command.CommandText = $"select * from cms_get_deletedata({id})";
+=======
+            // command.CommandText = $"select * from cms_get_deletedata({id})";
+            command.CommandText = $"select *from history_log({id})";
+>>>>>>> 90910c647a4c559b489c07a88e2fb13630df8373
             NpgsqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
                 var list = new cmsclass();
                 list.id = reader.GetInt32("a_id");
                 list.title = reader.GetString("title");
+<<<<<<< HEAD
                 list.description=reader.GetString("description");
                 list.image =reader.GetString("image");
                 list.prefId= reader.GetInt32("preference");
                 list.subPreferenceId = reader.GetInt32("subpreference");
                 // list.pref_id = reader.GetInt16("p_id");
+=======
+                list.description=reader.GetString("a_description");
+                list.image =reader.GetString("a_image");
+                list.description=reader.GetString("a_description");
+                list.image =reader.GetString("a_image");
+                list.prefId= reader.GetInt32("preference");
+                list.subPreferenceId = reader.GetInt32("subpreference");
+                list.status = reader.GetBoolean("status");
+                list.status = reader.GetBoolean("status");
+>>>>>>> 90910c647a4c559b489c07a88e2fb13630df8373
 
                 cms.Add(list);
             }
@@ -295,7 +332,12 @@ namespace cmsapi.Controllers
 
         [HttpPut]
         [Route("approvedata")]
+<<<<<<< HEAD
         [Authorize(Roles = Roles.ADMIN)]
+=======
+       [Authorize(Roles = Roles.ADMIN)]
+       [Authorize(Roles = Roles.ADMIN)]
+>>>>>>> 90910c647a4c559b489c07a88e2fb13630df8373
 
         public ActionResult approve(int id, int id1)
         {
