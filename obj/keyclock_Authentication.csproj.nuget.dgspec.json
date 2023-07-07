@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Amnex\\GIT\\content-management-system-dotnet-webapi-3\\keyclock_Authentication.csproj": {}
+    "D:\\Amnex\\GIT\\New folder\\content-management-system-dotnet-webapi\\keyclock_Authentication.csproj": {}
   },
   "projects": {
-    "D:\\Amnex\\GIT\\content-management-system-dotnet-webapi-3\\keyclock_Authentication.csproj": {
+    "D:\\Amnex\\GIT\\New folder\\content-management-system-dotnet-webapi\\keyclock_Authentication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Amnex\\GIT\\content-management-system-dotnet-webapi-3\\keyclock_Authentication.csproj",
+        "projectUniqueName": "D:\\Amnex\\GIT\\New folder\\content-management-system-dotnet-webapi\\keyclock_Authentication.csproj",
         "projectName": "keyclock_Authentication",
-        "projectPath": "D:\\Amnex\\GIT\\content-management-system-dotnet-webapi-3\\keyclock_Authentication.csproj",
+        "projectPath": "D:\\Amnex\\GIT\\New folder\\content-management-system-dotnet-webapi\\keyclock_Authentication.csproj",
         "packagesPath": "C:\\Users\\ankur.gamit\\.nuget\\packages\\",
-        "outputPath": "D:\\Amnex\\GIT\\content-management-system-dotnet-webapi-3\\obj\\",
+        "outputPath": "D:\\Amnex\\GIT\\New folder\\content-management-system-dotnet-webapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ankur.gamit\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -63,6 +63,10 @@
             "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
               "target": "Package",
               "version": "[6.0.16, )"
+            },
+            "Microsoft.AspNetCore.SignalR": {
+              "target": "Package",
+              "version": "[1.1.0, )"
             },
             "Microsoft.IdentityModel.Protocols.OpenIdConnect": {
               "target": "Package",

@@ -1,5 +1,7 @@
 using System.Text;
 using Keycloak.Net.Models.RealmsAdmin;
+using keyclock_Authentication;
+using keyclock_Authentication.Hubs;
 using keyclock_Authentication.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -45,6 +47,15 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 
+//*-- signalR Error handeling --*
+builder.Services.AddSignalR(options =>
+{
+
+    options.EnableDetailedErrors = true;
+});
+builder.Services.AddSingleton<NotificationService>();
+builder.Services.AddHostedService<NotificationService>();
+
 
 builder.Services
            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -85,5 +96,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<MyHub>("/serverHub");
+
+
+
 
 app.Run();
