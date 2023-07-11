@@ -6,7 +6,7 @@ namespace keyclock_Authentication.Hubs
     {
         public async Task SendMessage()
         {
-            await Clients.All.SendAsync("ReceiveMessage", "Hey from Server");
+            //await Clients.All.SendAsync("ReceiveMessage", "Hey from Server");
 
         }
 
